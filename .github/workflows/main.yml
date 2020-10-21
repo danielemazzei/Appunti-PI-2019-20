@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+env:
+  VERSION: "echo v$(date '+%Y-%m-%d')" # vYYYY-MM-DD
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Manage Version
+        run: |
+          git fetch --prune --unshallow --tags
+          GIT_SHA="$(git rev-parse --short HEAD)"
+          CURRENT_TAG="$(git tag -l | tail -1)"
+          if [[ -z $CURRENT_TAG ]]; then
+            echo "::set-env name=OLD_PRE_TAG::NULL"
+          else
+            echo "::set-env name=OLD_PRE_TAG::$CURRENT_TAG"
+          fi
+      
+      - name: Installa pdflatex
+        run: |
+          sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-lang-italian
+      
+      - name: Build pdf
+        run: |
+          cd "src"
+          pdflatex -pdf "Programmazione di Interfacce.tex"
+      
+      - name: Genera ultimi 5 commit
+        run: |
+          echo '### Gli ultimi 5 commit sono:' >> ReleaseNotes.md
+          git log -"5" --format="- %H %s" | sed '/^$/d' >> ReleaseNotes.md
+      
+      - name: Rimuovi vecchia pre-release
+        uses: dev-drprasad/delete-tag-and-release@v0.1.2
+        with:
+          tag_name: ${{ env.OLD_PRE_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          prerelease: false
+          bodyFile: ReleaseNotes.md
+          artifacts: "Programmazione di Interfacce.pdf"
+          tag: "v${{ env.VERSION }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
