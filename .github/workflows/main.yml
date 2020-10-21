@@ -24,7 +24,7 @@ jobs:
       
       - name: setup env
         run: |
-          echo "::set-env name=VERSION::$(echo v$(date '+%Y-%m-%d'))"
+          echo "::set-env name=VERSION::$(echo $(date '+%Y-%m-%d'))"
       
       - name: Manage Version
         run: |
@@ -63,6 +63,6 @@ jobs:
         with:
           prerelease: false
           bodyFile: ReleaseNotes.md
-          artifacts: "Programmazione di Interfacce.pdf"
+          artifacts: "src/Programmazione di Interfacce.pdf"
           tag: "v${{ env.VERSION }}"
           token: ${{ secrets.GITHUB_TOKEN }}
