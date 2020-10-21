@@ -37,14 +37,15 @@ jobs:
             echo "::set-env name=OLD_PRE_TAG::$CURRENT_TAG"
           fi
       
-      - name: Installa pdflatex
+      - name: Installa pdflatex & latexmk
         run: |
           sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-lang-italian
+          sudo apt-get install -y latexmk
       
       - name: Build pdf
         run: |
           cd "src"
-          pdflatex "Programmazione di Interfacce.tex"
+          latexmk -pdf "Programmazione di Interfacce.tex"
       
       - name: Genera ultimi 5 commit
         run: |
