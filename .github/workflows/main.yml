@@ -44,7 +44,7 @@ jobs:
       - name: Build pdf
         run: |
           cd "src"
-          pdflatex -pdf "Programmazione di Interfacce.tex"
+          pdflatex "Programmazione di Interfacce.tex"
       
       - name: Genera ultimi 5 commit
         run: |
