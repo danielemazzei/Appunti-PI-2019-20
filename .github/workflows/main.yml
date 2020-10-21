@@ -9,9 +9,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
-env:
-  VERSION: "$(echo v$(date '+%Y-%m-%d'))" # vYYYY-MM-DD
 
 jobs:
 
@@ -24,6 +21,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: '5'
+      
+      - name: setup env
+        run: |
+          echo "export VERSION=$(echo v$(date '+%Y-%m-%d'))" >> $BASH_ENV
+          source $BASH_ENV
       
       - name: Manage Version
         run: |
