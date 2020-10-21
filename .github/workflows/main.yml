@@ -24,8 +24,7 @@ jobs:
       
       - name: setup env
         run: |
-          echo "export VERSION=$(echo v$(date '+%Y-%m-%d'))" >> $BASH_ENV
-          source $BASH_ENV
+          echo "::set-env name=VERSION::$(echo v$(date '+%Y-%m-%d'))"
       
       - name: Manage Version
         run: |
