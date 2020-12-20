@@ -24,7 +24,7 @@ jobs:
       
       - name: setup env
         run: |
-          echo "::set-env name=VERSION::$(echo $(date '+%Y-%m-%d'))"
+          echo "VERSION=$(echo $(date '+%Y-%m-%d'))" >> $GITHUB_ENV
       
       - name: Manage Version
         run: |
@@ -32,9 +32,9 @@ jobs:
           GIT_SHA="$(git rev-parse --short HEAD)"
           CURRENT_TAG="$(git tag -l | tail -1)"
           if [[ -z $CURRENT_TAG ]]; then
-            echo "::set-env name=OLD_PRE_TAG::NULL"
+            echo "OLD_PRE_TAG=NULL" >> $GITHUB_ENV
           else
-            echo "::set-env name=OLD_PRE_TAG::$CURRENT_TAG"
+            echo "OLD_PRE_TAG=$CURRENT_TAG" >> $GITHUB_ENV
           fi
       
       - name: Installa pdflatex & latexmk
