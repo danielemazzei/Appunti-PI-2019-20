@@ -1,0 +1,125 @@
+\chapter{GUI design}
+L'obiettivo delle Graphical User Interface (GUI) è anticipare quello di cui l'utente finale potrebbe aver bisogno. Deve essere centrata sulle azioni che l'utente deve compiere per assecondare i suoi bisogni.
+
+Una GUI racchiude i concetti di
+
+\begin{itemize}
+    \item Interazione (come interagiamo con la GUI)
+    \item Struttura grafica (come la rappresento)
+    \item Architettura (Come è rappresentata l'informazione)
+\end{itemize}
+
+\section{Come è organizzata una interfaccia}
+
+L'organizzazione di una interfaccia è strettamente legata agli obiettivi dell'utente.
+
+\begin{itemize}
+	\item \textbf{Struttura gerarchica}
+
+La struttura gerarchica è una struttura molto navigabile, fortemente legata al mondo del business. In questa struttura l'utente percepisce immediatamente dove si trova.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale = 0.6]{"immagini/hierarchical"}
+\end{figure}
+	\item \textbf{Struttura sequenziale}
+
+In questa struttura ci si può muovere da una pagina all'altra in una sequenza lineare.
+
+È una struttura ottima per data input.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale = 0.7]{"immagini/sequential"}
+\end{figure}
+	\item \textbf{Struttura matriciale}
+
+In questa struttura, "tutto è connesso a tutto". L'utente rischia di saltare da una risorsa all'altra, perdendo il focus e sentendosi confuso. È sconsigliato utilizzarla salvo che in ambiti il cui scopo è esattamente questo (ad esempio Wikipedia).
+	\item \textbf{Database model}
+
+Struttura largamente utilizzata per l'analisi dei dati. Le informazioni al suo interno sono visualizzate così come vengono organizzate, mostrando i dati in modo 
+"grezzo".
+\end{itemize}
+
+In conclusione, è importante scegliere una struttura scalabile secondo i propri scopi ed evitare interfacce che entrano troppo in profondità o interfacce con una ramificazione orizzontale eccessiva.
+
+\section{Information Architecture}
+
+L'Information Architecture ci aiuta ad organizzare il contenuto affinchè l'utente possa trovare le informazioni che cerca e nel minor tempo possibile.
+
+Diversi componenti costituiscono l'architettura dell'informazione
+
+\begin{enumerate}
+    \item \textbf{Schema organizzativo}
+    \item \textbf{Labeling}
+    \item \textbf{Sistema di navigazione (come l'utente si muove)}
+    \item \textbf{Sistema di ricerca}
+\end{enumerate}
+
+Nell'architettura dell'informazione è importante distinguere anche il contesto ed il tipo di utente, oltre che la natura dei contenuti.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale = 0.7]{"immagini/information architecture"}
+\end{figure}
+
+\subsection{Schemi organizzativi esatti}
+
+Gli schermi organizzativi esatti (o anche detti oggettivi) sono:
+
+\begin{itemize}
+	\item quelli che organizzano l'informazione in categorie mutualmente esclusive
+	\item invarianti dal punto di vista culturale
+	\item note agli utenti
+	\item quelli che non necessitano ulteriore acquisizione di conoscenza
+\end{itemize} 
+
+Tra questi, infatti, troviamo schemi basati sull'ordine alfabetico, schemi temporali e schemi geografici.
+
+\subsection{Schemi organizzativi soggettivi}
+
+Gli schemi soggettivi dipendono dal soggetto o dalla applicazione. Tra questi troviamo, ad esempio:
+
+\begin{itemize}
+	\item \textbf{Topic}: organizzano il contenuto secondo il topic specifico
+	\item \textbf{Task}: organizzano il contenuto secondo le azioni che un utente realizzerà su quello specifico contenuto (ad esempio, il tasto File presente in ogni app)
+	\item \textbf{Utenza}: organizza i contenuti rispetto allo specifico utente
+	\item \textbf{Metafore}: aiuta gli utenti a relazionare i contenuti a concetti familiari
+\end{itemize} 
+
+\subsection{Modelli ibridi}
+
+I modelli ibridi sono costituiti da schemi oggettivi e schemi soggettivi. Solitamente vengono realizzati quando un team non riesce ad accordarsi su di un singolo schema. Lo sviluppo viene separato per ogni schema, che viene realizzato indipendentemente dagli altri, e alla fine avviene il merge di tutti gli schemi.
+Bisogna fare molta attenzione con l'utilizzo dei modelli ibridi, poiché possono provocare confusione e frustrazione negli utenti.
+
+\section{Document Object Model}
+
+Il Document Object Model, anche noto come DOM, è una parte essenziale nello sviluppo di siti web interattivi.
+
+Molti anni fa le pagine web erano statiche: la loro struttura e le loro componenti venivano decisi lato server (server-side) e non potevano mutare.
+
+Da qualche anno a questa parte, invece, le cose sono cambiate. Il DOM è una interfaccia che permette ai comuni linguaggi di programmazione client-side (come, ad esempio, JavaScript) di modificare l'aspetto di una pagina web dopo che questa è stata caricata dal server al browser del client.
+
+Per fare ciò, il DOM rappresenta il codice HTML/XML come una struttura ad albero, i cui nodi sono oggetti. Ogni oggetto può avere associato un event handler: quando l'utente, attraverso il browser, interagisce con la pagina web fa scattare un evento che modificherà l'aspetto di quest'ultima. Il DOM, ricevute le modifiche dal linguaggio di programmazione in uso, si occuperà di renderizzare nuovamente la pagina.
+
+DOM è lo standard ufficiale utilizzato dal World Wide Web Consortium, meglio noto come W3C, per la rappresentazione di documenti strutturati in modo da essere compatibile con ogni tipo di lingua e piattaforma (cross-platform).
+
+\subsection{Componenti di una interfaccia}
+
+Quando deve essere realizzata una interfaccia, è bene utilizzare i componenti a propria disposizione in modo comprensibile per l'utente. Ogni componente ha un ruolo ben preciso nel suo insieme, utilizzare quello scorretto provocherebbe un senso di frustrazione nell'utente. Al contrario, utilizzandone uno adatto al contesto, migliorerebbe sensibilmente l'efficienza e la soddisfazione.
+
+I componenti tipici di una interfaccia sono:
+
+\begin{itemize}
+	\item \textbf{Checkbox}: permette all'utente di scegliere una o più opzioni da un set dato. Viene utilizzata, solitamente, nel far esprimere all'utente un insieme di preferenze tra le opzioni proposte. È consigliato rappresentare le opzioni in verticale.
+	\item \textbf{Radio buttons}: permette all'utente di selezione una sola opzione tra quelle proposte. È utilizzata quando il numero di opzioni a disposizione è basso, ad esempio per la selezione del sesso dell'utente o per accettare i "classici" termini e condizioni durante la registrazione.
+	\item \textbf{Dropdown list}: permettono all'utente di selezionare una sola opzione tra quelle proposte. Si differenzia dal radio button poiché permette di realizzare un set di opzioni disponibili molto alto e risparmiare contemporaneamente lo spazio necessario alla loro visualizzazione.
+	\item \textbf{List boxes}: similmente alle checkboxes, permettono di selezionare un insieme di opzioni da un set dato. Avendo una struttura simile alle dropdown lists possono essere utilizzate per rappresentare un largo numero di opzioni disponibili.
+	\item \textbf{Buttons}: definisce un'azione che verrà compiuta cliccando su di esso. Solitamente presenta un testo al suo interno.
+	\item \textbf{Dropdown Button}: un button che, quando cliccato, mostra una lista di elementi in mutua esclusione (una dropdown list).
+	\item \textbf{Toggles}: permette di far selezionare all'utente uno stato tra i due proposti. Nel mondo reale, è riconducibile al classico interruttore della luce.
+	\item \textbf{Text fields}: permette all'utente di inserire un testo al suo interno.
+	\item \textbf{Date/Time picker}: permette all'utente di selezionare una data/ora specifica. È solitamente rappresentato a forma di calendario. Utile per la selezione della data di nascita o la prenotazione di eventi.
+\end{itemize}
+
+Tutti i componenti, oltre quelli già elencati, utilizzati in contesti meno comuni, possono essere trovati su \url{https://www.usability.gov/how-to-and-tools/methods/user-interface-elements.html}.
+
+\pagebreak
