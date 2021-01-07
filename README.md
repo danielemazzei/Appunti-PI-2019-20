@@ -4,4 +4,4 @@ Corso di Programmazione di Interfacce - Laurea in Informatica - Università di P
 ## Scarica gli appunti
 [![Download from https://github.com/danielemazzei/Appunti-PI-UNIPI/releases](https://img.shields.io/github/v/release/danielemazzei/Appunti-PI-UNIPI?label=Download)](https://github.com/danielemazzei/Appunti-PI-UNIPI/releases)
 
-![alt text](https://github.com/Gethseman/Appunti-PI-2019-20/blob/master/background.png)
+![alt text](https://github.com/danielemazzei/Appunti-PI-UNIPI/blob/master/background.png)
